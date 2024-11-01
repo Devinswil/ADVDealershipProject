@@ -47,6 +47,7 @@ public abstract class Contract {
         this.vehicleSold = vehicleSold;
     }
 
-    public void getTotalPrice(){}
-    public void getMonthlyPayment(){}
+    public abstract double getTotalPrice();
+
+    public abstract double getMonthlyPayment();
 }
