@@ -4,7 +4,7 @@ public abstract class Contract {
     private String dateOfContract;
     private String customerName;
     private String customerEmail;
-    private String vehicleSold;
+    private Vehicle vehicleSold;
     private double totalPrice;
     private double monthlyPayment;
 
@@ -39,12 +39,8 @@ public abstract class Contract {
         this.customerEmail = customerEmail;
     }
 
-    public String getVehicleSold() {
+    public Vehicle getVehicleSold() {
         return vehicleSold;
-    }
-
-    public void setVehicleSold(String vehicleSold) {
-        this.vehicleSold = vehicleSold;
     }
 
     public abstract double getTotalPrice();
