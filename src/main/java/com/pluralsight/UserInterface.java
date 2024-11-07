@@ -240,13 +240,12 @@ public class UserInterface {
             finance = scanner.nextLine().equalsIgnoreCase("yes");
             SalesContract salesContract = new SalesContract(date, name, email, vehicleToFind, finance);
             System.out.println("Total Price: $ " + salesContract.getTotalPrice());
-            dealership.removeVehicle(vehicleToFind);
+
             if (finance) {
                 System.out.println("Monthly payment: $ " + salesContract.getMonthlyPayment());
-                contractDataManager.saveContract(salesContract);
-                dealership.removeVehicle(vehicleToFind);
-
             }
+            contractDataManager.saveContract(salesContract);//writes contract to contract csv
+            dealership.removeVehicle(vehicleToFind);
         } else if (leaseOrBuy.equalsIgnoreCase("Lease")) {
             LeaseContract leaseContract = new LeaseContract(date, name, email, vehicleToFind);
             System.out.println("Total price: $" + leaseContract.getTotalPrice());
@@ -254,6 +253,8 @@ public class UserInterface {
             contractDataManager.saveContract(leaseContract);
             dealership.removeVehicle(vehicleToFind);
 
+        }else{
+            System.out.println("Invalid try again!");
         }
 
 

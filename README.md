@@ -2,24 +2,21 @@
 
 ## Description of the Project
 
-My dealership application gives users the ability to filter search through dealerships inventories. Each filter will allow for the users to give the console their search requirements and will be shown vehicles according to that.
+This version of my application allows for me to generate contracts for buyers of my vehicles. These contracts will be saved into a contract inventory. Also, the final price on the vehicle will be dependent on financing or leasing and the cost of the car.
 
 
 
 ## User Stories
 
--As a user I would like to be able to remove vehicles from inventory.
--As a user I would like to be able to search within a certain price range. This will save me time from looking through the whole inventory.
--As a user I would like to be able to search only by the make and model of vehicles. This will save the time of looking at cars I don't want.
--As a user I would like to be able to search within a certain year range.
--As a user I would like to be able to add vehicles into the inventory.
--As a user I would like to be able to see all the vehicles without having any filters applied.
--As a user I would like to be able to search for vehicles that have a certain number of miles.
--As a user I would like to be able to search for vehicles by the type (car,truck,SUV,van).
+-As a user I would like to have the ability to offer buyers contracts on vehicles.
+-As the buyer I would like to be able to buy a car.
+-As the buyer I would like to be able to lease a car.
+-As a user I would like to keep an inventory of all the contracts that have been made.
+-As a user I would like to be able to buy a vehicle on the main menu of the application.
 
 ## Setup
 
-The application while ask for an input with corresponding action. Once given an input it will display a filtered version o the inventory or will prompt to add or remove vehicle.
+The application while ask for an input with corresponding action. Once given an input it will display a filtered version of the inventory, will prompt to add or remove vehicle. In addition it will ask users if they would like to buy and vehicle and route they would like to do so. Rather that be financing one or leasing.
 
 ### Prerequisites
 
@@ -50,7 +47,7 @@ Finance vehicle ![img_1.png](img_1.png)
 Lease vehicle ![img_2.png](img_2.png)
 Buying car no finance ![img_3.png](img_3.png)
 Before ![img_4.png](img_4.png)
-After
+After purchase ![img_5.png](img_5.png)![img_6.png](img_6.png)![img_7.png](img_7.png)
 
 
 ## Future Work
@@ -68,10 +65,11 @@ List resources such as tutorials, articles, or documentation that helped you dur
 
 ## Team Members
 
-n/a
+-Brandon
 
 ## Thanks
 
 
 
 - Thank you to Raymond for continuous support and guidance.
+- Brandon for helping with questions and concerns and also taking turns taking an ear beating my Raymond for code mistakes. LOL

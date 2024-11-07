@@ -9,10 +9,10 @@ public class ContractDataManager {
     private static final String FILE_NAME1 = "contracts.csv";
 
     public void saveContract(Contract contract) {
-        try {
-            BufferedWriter br = new BufferedWriter(new FileWriter(FILE_NAME1, true));
+        try (BufferedWriter br = new BufferedWriter(new FileWriter(FILE_NAME1, true))) {
+
             if (contract instanceof SalesContract) {
-                br.write("SALES");
+                br.write("SALES|");
                 br.write(contract.getDateOfContract() + "|");
                 br.write(contract.getCustomerName() + "|");
                 br.write(contract.getCustomerEmail() + "|");
@@ -28,9 +28,10 @@ public class ContractDataManager {
                 br.write(((SalesContract) contract).getRecordingFee() + "|");
                 br.write(((SalesContract) contract).getProcessingFee() + "|");
                 br.write(contract.getTotalPrice() + "|");
-                br.write(contract.getMonthlyPayment() + "|");
+                br.write(((SalesContract) contract).isFinance() ? "YES" : "NO"); //casts salesContract onto contract in order to get isFinance
+                br.write("|" +contract.getMonthlyPayment() + "|");
             } else if (contract instanceof LeaseContract) {
-                br.write("LEASE");
+                br.write("LEASE|");
                 br.write(contract.getDateOfContract() + "|");
                 br.write(contract.getCustomerName() + "|");
                 br.write(contract.getCustomerEmail() + "|");
@@ -43,16 +44,13 @@ public class ContractDataManager {
                 br.write(contract.getVehicleSold().getOdometer() + "|");
                 br.write(contract.getVehicleSold().getPrice() + "|");
                 br.write(((LeaseContract) contract).getExpectedEndingValue() + "|");
-                br.write(((LeaseContract) contract).getLeaseFee()+ "|");
+                br.write(((LeaseContract) contract).getLeaseFee() + "|");
                 br.write(contract.getTotalPrice() + "|");
                 br.write(contract.getMonthlyPayment() + "|");
-
-
             }
 
         } catch (IOException e) {
-            System.err.println("Error writing to file");;
+            System.err.println("Error writing to file: " + e.getMessage());
         }
     }
-
 }
