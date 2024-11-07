@@ -4,16 +4,19 @@ import java.util.List;
 
 public class SalesContract extends Contract{
     private double salesTaxAmount;
-    private double recordingFee;
+    private double recordingFee=100;
     private double processingFee;
     private  boolean finance;
 
 
-    public SalesContract(String dateOfContract, String customerName, String customerEmail, Vehicle vehicleSold, double processingFee, boolean finance) {
+    public SalesContract(String dateOfContract, String customerName, String customerEmail, Vehicle vehicleSold, boolean finance) {
         super(dateOfContract, customerName, customerEmail, vehicleSold);
-        this.salesTaxAmount = .05;
-        this.recordingFee = 100;
-        this.processingFee = processingFee;
+        this.salesTaxAmount = vehicleSold.getPrice()*.05;
+       if (vehicleSold.getPrice()<1000) {
+           this.processingFee = 295.0;
+       }else{
+           this.processingFee=495.0;
+       }
         this.finance = finance;
 
     }
@@ -61,7 +64,7 @@ public class SalesContract extends Contract{
         int numberOfPayments = 0;
         double interestRate = 0;
         boolean financeOption=false;
-        if (financeOption) {
+        if (this.finance) {
             if (getVehicleSold().getPrice() >= 10000) {
                 numberOfPayments = 48;
                 interestRate = 4.25 / 1200;

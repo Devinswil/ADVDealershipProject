@@ -1,5 +1,6 @@
 package com.pluralsight;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -27,6 +28,7 @@ public class UserInterface {
             System.out.println("7) Search all vehicles");
             System.out.println("8) Add vehicle");
             System.out.println("9) Remove vehicle");
+            System.out.println("10) Buy a Vehicle");
             System.out.println("X) Exit");
 
             String input = scanner.nextLine().trim();
@@ -58,6 +60,9 @@ public class UserInterface {
                     break;
                 case "9":
                     removeVehicleRequest(scanner);
+                    break;
+                case "10":
+                    processSalesOrLeasingRequest(scanner);
                     break;
                 case "X":
                     running = false;
@@ -207,16 +212,53 @@ public class UserInterface {
 
     }
 
-    private void displayCart(List<Vehicle> cart, Scanner scanner, double totalAmount) {
-        for (Vehicle vehicle : cart) {
-            System.out.println(vehicle);
-            totalAmount += vehicle.getPrice();
+    private void processSalesOrLeasingRequest(Scanner scanner) {
+        System.out.println("What is the VIN of the vehicle you would like to buy");
+        int vin = scanner.nextInt();
+        scanner.nextLine();
+        ContractDataManager contractDataManager= new ContractDataManager();
+        Vehicle vehicleToFind = null;
+        for (Vehicle vehicle : dealership.getAllVehicles()) {
+            if (vin == vehicle.getVin()) {
+                vehicleToFind = vehicle;
+                break;
+
+            }
+
         }
-        if (cart.isEmpty()) {
-            System.out.println("Nothing in cart!");
-            return;
+        System.out.println("What is the date?");
+        String date = scanner.nextLine();
+        System.out.println("What is your name?");
+        String name = scanner.nextLine();
+        System.out.println("What is your email?");
+        String email = scanner.nextLine();
+        System.out.println("Would you like to lease or buy?");
+        String leaseOrBuy = scanner.nextLine();
+        boolean finance = false;
+        if (leaseOrBuy.equalsIgnoreCase("buy")) {
+            System.out.println("Would you like to finance the vehicle?");
+            finance = scanner.nextLine().equalsIgnoreCase("yes");
+            SalesContract salesContract = new SalesContract(date, name, email, vehicleToFind, finance);
+            System.out.println("Total Price: $ " + salesContract.getTotalPrice());
+            dealership.removeVehicle(vehicleToFind);
+            if (finance) {
+                System.out.println("Monthly payment: $ " + salesContract.getMonthlyPayment());
+                contractDataManager.saveContract(salesContract);
+                dealership.removeVehicle(vehicleToFind);
+
+            }
+        } else if (leaseOrBuy.equalsIgnoreCase("Lease")) {
+            LeaseContract leaseContract = new LeaseContract(date, name, email, vehicleToFind);
+            System.out.println("Total price: $" + leaseContract.getTotalPrice());
+            System.out.println("Monthly payment: $" + leaseContract.getMonthlyPayment()+ " for 36 months!");
+            contractDataManager.saveContract(leaseContract);
+            dealership.removeVehicle(vehicleToFind);
+
         }
+
 
     }
 
 }
+
+

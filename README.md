@@ -44,10 +44,13 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 Include screenshots or GIFs that show your application in action. Use tools like [Giphy Capture](https://giphy.com/apps/giphycapture) to record a GIF of your application.
 
-![img.png](img.png) 7.
-![img_1.png](img_1.png) 1.
-![img_2.png](img_2.png)4.
-![img_3.png](img_3.png)6.
+List of vehicles ![img.png](img.png)
+
+Finance vehicle ![img_1.png](img_1.png)
+Lease vehicle ![img_2.png](img_2.png)
+Buying car no finance ![img_3.png](img_3.png)
+Before ![img_4.png](img_4.png)
+After
 
 
 ## Future Work
